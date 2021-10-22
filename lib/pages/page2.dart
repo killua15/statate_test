@@ -28,7 +28,7 @@ class Page2 extends StatelessWidget {
               ),
             ),
             MaterialButton(
-              onPressed: () => {},
+              onPressed: () => {context.read<UserCubit>().changeAge(30)},
               color: Colors.blue,
               child: Text(
                 'Cambiar Edad',
@@ -36,7 +36,8 @@ class Page2 extends StatelessWidget {
               ),
             ),
             MaterialButton(
-              onPressed: () => {},
+              onPressed: () =>
+                  {context.read<UserCubit>().addProfetion("Profecion 1")},
               color: Colors.blue,
               child: Text(
                 'Añadir Profecion',

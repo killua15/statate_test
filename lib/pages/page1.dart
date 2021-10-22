@@ -13,19 +13,14 @@ class Page1 extends StatelessWidget {
       ),
       body: BlocBuilder<UserCubit, UserState>(
         builder: (_, state) {
-          // if (state is UserInitial) {
-          //   return Center(child: Text('No users'));
-          // } else if (state is UserActive) {
-          //   return InformationUser(user: state.user);
-          // } else {
-          //   return Center(child: Text('Nuevo estado'));
-          // }
+          switch (state.runtimeType) {
+            case UserInitial:
+              return Center(child: Text('No users'));
 
-          switch () {
-            case :
-              
-              break;
+            case UserActive:
+              return InformationUser(user: (state as UserActive).user);
             default:
+              return Center(child: Text('Nuevo estado'));
           }
         },
       ),
