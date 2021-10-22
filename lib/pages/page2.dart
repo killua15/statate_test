@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:statate_test/bloc/user/users_cubit.dart';
+import 'package:statate_test/models/user.dart';
 
 class Page2 extends StatelessWidget {
   @override
@@ -12,7 +15,12 @@ class Page2 extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             MaterialButton(
-              onPressed: () => {},
+              onPressed: () {
+                context.read<UserCubit>().selectUser(User(
+                    nombre: 'David',
+                    edad: 32,
+                    profeciones: ['Swift', 'JavaScript']));
+              },
               color: Colors.blue,
               child: Text(
                 'Establecer Usuario',

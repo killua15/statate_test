@@ -1,5 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:statate_test/bloc/user/users_cubit.dart';
+import 'package:statate_test/models/user.dart';
 
 class Page1 extends StatelessWidget {
   @override
@@ -8,7 +11,24 @@ class Page1 extends StatelessWidget {
       appBar: AppBar(
         title: Text("Page1"),
       ),
-      body: InformationUser(),
+      body: BlocBuilder<UserCubit, UserState>(
+        builder: (_, state) {
+          // if (state is UserInitial) {
+          //   return Center(child: Text('No users'));
+          // } else if (state is UserActive) {
+          //   return InformationUser(user: state.user);
+          // } else {
+          //   return Center(child: Text('Nuevo estado'));
+          // }
+
+          switch () {
+            case :
+              
+              break;
+            default:
+          }
+        },
+      ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.ac_unit),
         onPressed: () {
@@ -20,6 +40,9 @@ class Page1 extends StatelessWidget {
 }
 
 class InformationUser extends StatelessWidget {
+  User user;
+
+  InformationUser({required this.user});
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -34,8 +57,8 @@ class InformationUser extends StatelessWidget {
         Divider(
           color: Colors.blue,
         ),
-        ListTile(title: Text("Nombre: ")),
-        ListTile(title: Text("Edad: ")),
+        ListTile(title: Text("Nombre: ${user.nombre}")),
+        ListTile(title: Text("Edad: ${user.edad}")),
         Divider(
           color: Colors.blue,
         ),
@@ -43,10 +66,9 @@ class InformationUser extends StatelessWidget {
           "Profeciones",
           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
         ),
-        ListTile(title: Text("Profecion1: ")),
-        ListTile(title: Text("Profecion2: ")),
-        ListTile(title: Text("Profecion3: ")),
-        ListTile(title: Text("Profecion4: ")),
+        ...user.profeciones.map((e) => ListTile(
+              title: Text(e),
+            ))
       ]),
     );
   }
