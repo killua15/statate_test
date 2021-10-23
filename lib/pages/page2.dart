@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:statate_test/bloc/users/bloc/user_bloc.dart';
+import 'package:statate_test/models/user.dart';
 
 class Page2 extends StatelessWidget {
   @override
@@ -12,7 +15,12 @@ class Page2 extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             MaterialButton(
-              onPressed: () => {},
+              onPressed: () => {
+                BlocProvider.of<UserBloc>(context).add(ActiveUser(User(
+                    nombre: "David",
+                    edad: 32,
+                    profeciones: ["Swift", "JavaScript"])))
+              },
               color: Colors.blue,
               child: Text(
                 'Establecer Usuario',
@@ -20,7 +28,8 @@ class Page2 extends StatelessWidget {
               ),
             ),
             MaterialButton(
-              onPressed: () => {},
+              onPressed: () =>
+                  {BlocProvider.of<UserBloc>(context).add(ChangeAge(30))},
               color: Colors.blue,
               child: Text(
                 'Cambiar Edad',
@@ -28,7 +37,10 @@ class Page2 extends StatelessWidget {
               ),
             ),
             MaterialButton(
-              onPressed: () => {},
+              onPressed: () => {
+                BlocProvider.of<UserBloc>(context)
+                    .add(AddProfetions("Profecion 1"))
+              },
               color: Colors.blue,
               child: Text(
                 'Añadir Profecion',
