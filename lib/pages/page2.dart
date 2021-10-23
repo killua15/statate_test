@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:statate_test/controllers/user_controller.dart';
+import 'package:statate_test/models/user.dart';
 
 class Page2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final userCrtl = Get.find<UserController>();
     return Scaffold(
       appBar: AppBar(
         title: Text("Page1"),
@@ -12,7 +16,12 @@ class Page2 extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             MaterialButton(
-              onPressed: () => {},
+              onPressed: () => {
+                userCrtl.loadUser(User(
+                    nombre: 'David',
+                    edad: 32,
+                    profeciones: ['Swift', 'JavaScript']))
+              },
               color: Colors.blue,
               child: Text(
                 'Establecer Usuario',
@@ -20,7 +29,7 @@ class Page2 extends StatelessWidget {
               ),
             ),
             MaterialButton(
-              onPressed: () => {},
+              onPressed: () => {userCrtl.changeAge(30)},
               color: Colors.blue,
               child: Text(
                 'Cambiar Edad',
